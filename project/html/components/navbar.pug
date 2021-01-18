@@ -1,0 +1,51 @@
+.nav_brand
+      h1 PoStore
+ul.nav_bar 
+   li.dropdown.show.notification
+      a#dropdownMenuLink.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+         | Notification
+      .dropdown-menu(aria-labelledby='dropdownMenuLink')
+         .not-head
+            | Notifications
+            span 50
+         .not-body
+            ul.list-unstyled
+               li 
+                  i.fa.fa-envelope-o.fa-lg
+                  | you have an message ...
+               li 
+                  i.fa.fa-money.fa-lg 
+                  |You have get money back ... 
+         .not-footer
+            .text-center
+               a(href="#") view all notification
+   .center
+      .form-group
+         input.form-control(type="text")
+         .btn.search: i.fa.fa-search
+      li.dropdown.show.lange
+            a#dropdownMenuLink.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+               |EN
+            .dropdown-menu(aria-labelledby='dropdownMenuLink')
+               ul.lane.list-unstyled
+                  li EN
+                  li AR
+                  li FR
+   li.dropdown.show.user
+      a#dropdownMenuLink.dropdown-toggle.login(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+         | Hello, Login
+      .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuLink')
+         .rows
+               .link-box
+                  i.fa.fa-gear.fa-lg.fa-fw
+                  span Settings
+               .link-box
+                  i.fa.fa-user.fa-lg
+                  span MyProfile
+               .link-box
+                  i.fa.fa-power-off.fa-lg
+                  span logOut
+   li.cart: .item-count 0
+      i.fa.fa-shopping-cart
+.navbars
+  i.fa.fa-bars.fa-lg

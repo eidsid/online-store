@@ -1,0 +1,33 @@
+$center:0 auto;
+$navbar_width:100%;
+$sidbar_width:200px;
+$header-height:100px;
+$header_color:#131921;
+$sub_nav_color:#232f3e;
+$mobile-width :700px;
+@mixin flex($flex-direction) {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $flex-direction !important;
+}
+
+@mixin button {
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+
+@mixin Stransation($time) {
+    transition: all ease-in-out $time;
+}
+
+@mixin button {
+    padding: 10px 12px;
+    border-radius: 15px;
+}
+
+@mixin mobile {
+    @media (max-width: $mobile-width) {
+        @content
+    }
+}
