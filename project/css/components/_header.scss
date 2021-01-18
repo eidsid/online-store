@@ -149,7 +149,6 @@
             }
         }
         .cart {
-            cursor: pointer;
             @include flex(row)
         }
         .dropdown-menu {
@@ -228,7 +227,11 @@
                     }
                 }
             }
-            // transform: translateY(-120%);
+            transform: translateY(-120%);
+            @include Stransation(0.5s);
+            &.show {
+                transform: translateY(0);
+            }
         }
         .navbars {
             display: inline;
