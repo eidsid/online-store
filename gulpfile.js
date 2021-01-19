@@ -35,10 +35,9 @@ gulp.task('js', () => {
     return gulp.src([
             'project/js/localStorage.js',
             'project/js/scrollout.js',
-            'project/js/products.js',
-            'project/js/navbar.js',
+            'project/**/*.js',
+
         ])
-        .pipe(uglify())
         .pipe(concat('main.js'))
         .pipe(gulp.dest('dist/js'))
 })

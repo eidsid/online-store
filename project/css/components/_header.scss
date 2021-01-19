@@ -144,7 +144,6 @@
         li {
             @include button;
             a {
-                text-decoration: none;
                 color: whitesmoke;
             }
         }
@@ -202,18 +201,6 @@
                     }
                 }
             }
-            .user {
-                position: relative;
-                @include flex(row);
-                .dropdown-menu {
-                    left: 67px !important;
-                    transform: scale(0.7);
-                    position: absolute;
-                    &:before {
-                        content: unset;
-                    }
-                }
-            }
             .center {
                 margin-top: 150px;
                 li {
@@ -224,6 +211,18 @@
                         &:before {
                             content: unset;
                         }
+                    }
+                }
+            }
+            .user {
+                position: relative;
+                @include flex(row);
+                .dropdown-menu {
+                    transform: scale(0.7);
+                    position: absolute !important;
+                    margin-left: 15vmin !important;
+                    &:before {
+                        content: unset;
                     }
                 }
             }
