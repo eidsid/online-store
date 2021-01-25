@@ -2,4 +2,57 @@
     margin-top: $header-height+50;
     @include flex(row);
     justify-content: space-between;
+    .product {
+        height: 400px;
+        width: 400px;
+        overflow: hidden;
+        background-color: rgba(255, 255, 255, 0.885);
+        color: rgb(12, 36, 67);
+        padding: 2%;
+        .prod-header {
+            text-align: center;
+            margin: 20px 0;
+            color: rgb(38, 38, 38);
+            text-shadow: 1px 1px rgb(6, 9, 17), 2px 2px rgb(11, 27, 68), 3px 3px 3px rgb(11, 27, 68);
+        }
+        .prod-body {
+            @include flex(row);
+            img {
+                height: 150px;
+            }
+            .info {
+                margin: 5%;
+                opacity: 0.8;
+            }
+        }
+        .stars {
+            float: right;
+            margin-right: 10px;
+            color: rgba(255, 166, 0, 0.665);
+        }
+        .prod-footer {
+            .price {
+                margin: 3%;
+                color: rgb(2, 5, 10);
+                font-weight: bold;
+            }
+            .count {
+                margin-top: 6%;
+                width: 100px;
+            }
+            .buy {
+                float: right;
+                margin-top: -8%;
+            }
+        }
+    }
+}
+
+@include mobile {
+    .productinfo-content {
+        flex-direction: column !important;
+        .product {
+            width: 100%;
+        }
+    }
 }
