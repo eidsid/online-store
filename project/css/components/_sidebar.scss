@@ -1,8 +1,9 @@
 .side-bar {
     color: whitesmoke;
+    .price_links,
     .links {
         li {
-            margin-top: 40%;
+            margin-top: 15%;
             text-align: center;
             a {
                 background: rgb(194, 194, 194);
@@ -17,13 +18,18 @@
             }
         }
     }
+    .price_links {
+        h1 {
+            margin-top: 20%;
+            margin-bottom: 30%;
+            text-align: center;
+            opacity: 0.8;
+        }
+    }
     button {
-        padding: 15px 30px;
-        margin-top: 75%;
-        margin-left: 24%;
-        @include Stransation(0.5s);
-        background: rgb(194, 194, 194);
-        font-size: 1.5rem;
+        margin-left: 37%;
+        margin-top: 35%;
+        @include Stransation(0.4s);
         &:hover {
             transform: scale(1.1);
         }

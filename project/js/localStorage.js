@@ -50,3 +50,21 @@
 //         return ids;
 //     }
 // }
+
+
+
+class local_storage {
+
+    //pass data from two html pages by pass id
+    static set_id(id) {
+            localStorage.setItem('productid', id);
+        }
+        // get product id to pass info betwene two pages
+    static get_passed_id() {
+        return localStorage.getItem('productid');
+    }
+
+
+
+
+}

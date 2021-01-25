@@ -33,8 +33,7 @@ gulp.task('css', () => {
     // js task
 gulp.task('js', () => {
     return gulp.src([
-            'project/js/localStorage.js',
-            'project/js/scrollout.js',
+
             'project/**/*.js',
 
         ])

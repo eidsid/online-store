@@ -1,6 +1,13 @@
-.nav_brand
+.header-nav
+  .nav_brand
       h1 PoStore
-ul.nav_bar 
+  -if (page_title=="HomePage")
+         .form-group.search_form
+            input(type="text" class="form-control search_area" placeholder="search")
+  .navbars
+        i.fa.fa-bars.fa-lg 
+      
+ul.nav_bar
    li.dropdown.show.notification
       a#dropdownMenuLink.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
          | Notification
@@ -20,9 +27,9 @@ ul.nav_bar
             .text-center
                a(href="#") view all notification
    .center
-      .form-group
-         input.form-control(type="text")
-         .btn.search: i.fa.fa-search
+    -if (page_title=="HomePage")
+      .form-group.search_form
+         input(type="text" class="form-control search_area")
       li.dropdown.show.lange
             a#dropdownMenuLink.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
                |EN
@@ -47,5 +54,3 @@ ul.nav_bar
                   span logOut
    li.cart: .item-count 0
       i.fa.fa-shopping-cart
-.navbars
-  i.fa.fa-bars.fa-lg

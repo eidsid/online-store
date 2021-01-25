@@ -1,0 +1,5 @@
+.productinfo-content {
+    margin-top: $header-height+50;
+    @include flex(row);
+    justify-content: space-between;
+}

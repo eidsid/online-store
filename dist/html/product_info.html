@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>HomePage</title>
+    <title>productPage</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
     <link rel="preconnect" href="https://fonts.gstatic.com"/>
@@ -15,9 +15,6 @@
       <div class="header-nav">
         <div class="nav_brand">
           <h1>PoStore</h1>
-        </div>
-        <div class="form-group search_form">
-          <input class="form-control search_area" type="text" placeholder="search"/>
         </div>
         <div class="navbars"><i class="fa fa-bars fa-lg"> </i></div>
       </div>
@@ -37,18 +34,6 @@
           </div>
         </li>
         <div class="center">
-          <div class="form-group search_form">
-            <input class="form-control search_area" type="text"/>
-          </div>
-          <li class="dropdown show lange"><a class="dropdown-toggle" id="dropdownMenuLink" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <ul class="lane list-unstyled">
-                <li>EN</li>
-                <li>AR</li>
-                <li>FR</li>
-              </ul>
-            </div>
-          </li>
         </div>
         <li class="dropdown show user"><a class="dropdown-toggle login" id="dropdownMenuLink" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hello, Login</a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
@@ -64,25 +49,27 @@
         </li>
       </ul>
     </div>
-    <div class="page-content"> 
-      <div class="side-bar">
-        <h3 class="text-center">By Categories</h3>
-        <ul class="links list-unstyled">
-          <li><a class="all" id="link" href="#"> all Categories</a></li>
-        </ul>
-        <ul class="price_links list-unstyled">
-          <h1>By Price</h1>
-          <li><a href="#" id="by-price" data-price="100">1 : 100</a></li>
-          <li><a href="#" id="by-price" data-price="500">100 : 500</a></li>
-          <li><a href="#" id="by-price" data-price="1000">500 : 1000</a></li>
-        </ul>
-        <button class="btn btn-primary">cart</button>
-      </div>
-      <div class="content"><i class="fa fa-exchange fa-lg toggle-sidbar"></i>
-        <div class="container">
-          <div class="products row"></div>
+    <div class="productinfo-content"> 
+      <div class="productinfo-container">
+        <h1 class="categories">product category</h1>
+        <div class="product"> 
+          <div class="header">
+            <h4 class="title">product title</h4>
+          </div>
+          <div class="body">
+            <p class="info"></p><img class="img" src="" alt=""/>
+          </div>
+          <div class="footer"> 
+            <h3 class="price"></h3>
+            <input class="count" type="text" value="1"/>
+            <button class="buy">buy</button>
+          </div>
         </div>
       </div>
+      <div class="products_recommendations">
+        <h1>recommendations</h1>
+      </div>
+      <div class="test">test</div>
     </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

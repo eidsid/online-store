@@ -1,5 +1,10 @@
-.side-bar   
-   h3.text-center Categories
-   ul.links.list-unstyled
-    li: a(id="link" href="#")  all Categories
-   button.btn cart
+h3.text-center By Categories
+ul.links.list-unstyled
+    li: a(id="link" href="#" class="all")  all Categories
+ul.price_links.list-unstyled
+    h1 By Price
+    li: a(href="#" id="by-price" data-price="100"  ) 1 : 100
+    li: a(href="#" id="by-price" data-price="500" ) 100 : 500
+    li: a(href="#" id="by-price" data-price="1000") 500 : 1000
+
+button.btn.btn-primary cart
