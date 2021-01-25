@@ -2,13 +2,20 @@
     margin-top: $header-height+50;
     @include flex(row);
     justify-content: space-between;
+    .categories {
+        color: whitesmoke;
+        margin: 0 5% 5% 20%;
+    }
     .product {
-        height: 400px;
-        width: 400px;
+        width: 420px;
+        height: fit-content;
         overflow: hidden;
         background-color: rgba(255, 255, 255, 0.885);
         color: rgb(12, 36, 67);
         padding: 2%;
+        margin-left: 2%;
+        border-radius: 15px;
+        box-shadow: 0px 0px 10px 10px rgb(29, 29, 29);
         .prod-header {
             text-align: center;
             margin: 20px 0;
@@ -46,13 +53,61 @@
             }
         }
     }
+    .products_recommendations {
+        margin-right: 10px;
+        width: 340px;
+        height: fit-content;
+        padding-bottom: 10%;
+        background-color: rgb(12, 36, 67);
+        border-radius: 15px;
+        color: rgb(222, 227, 233) !important;
+        h2 {
+            text-align: center;
+            margin-top: 2%;
+            font-weight: 400;
+        }
+        .recommend-products {
+            .product {
+                box-shadow: none;
+                transform: scaleX(0.77);
+                margin: 10% 0 0 -11.5%;
+                img {
+                    width: 60px;
+                    padding: 5px;
+                    border-radius: 5px;
+                    background-color: whitesmoke;
+                }
+                .form {
+                    display: flex;
+                    justify-content: space-between;
+                    .price {
+                        padding-top: 15px;
+                    }
+                }
+            }
+        }
+    }
 }
 
-@include mobile {
+@media(max-width:820px) {
+    .categories {
+        margin-left: 40% !important;
+    }
     .productinfo-content {
         flex-direction: column !important;
         .product {
-            width: 100%;
+            width: 90%;
+            margin: $center;
+        }
+    }
+    .products_recommendations {
+        width: 90% !important;
+        margin: 30px auto;
+        padding: 0;
+        .recommend-products {
+            .product {
+                margin: 30px auto !important;
+            }
         }
     }
 }
