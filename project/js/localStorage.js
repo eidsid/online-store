@@ -63,6 +63,30 @@ class local_storage {
     static get_passed_id() {
         return localStorage.getItem('productid');
     }
+    static get_purchase() {
+        let purchase_items = JSON.parse(localStorage.getItem('purchase-items'));
+        if (purchase_items) {
+            return purchase_items;
+        } else {
+            return purchase_items = [];
+        }
+    }
+    static set_purchase(item) {
+        let purchase_items = local_storage.get_purchase();
+        purchase_items.push(item);
+        localStorage.setItem('purchase-item', JSON.stringify(purchase_items));
+
+    }
+    static cancel_purchase(id) {
+        let purchase_items = local_storage.get_purchase();
+        purchase_items.forEach((item, index) => {
+            if (item.id == id) {
+                purchase_items.splice(index, 1);
+
+            }
+
+        });
+    }
 
 
 

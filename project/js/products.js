@@ -2,6 +2,13 @@ $(function() {
     let links_container = $('.side-bar .links');
     let links_price = $('.side-bar .price_links');
     let uiproducts_container = $('.products');
+    //get data from aip
+    fetch(`https://fakestoreapi.com/products/categories `).then(data => data.json()).then(data => ui.createLinks(data));
+    fetch(`https://fakestoreapi.com/products`).then(data => data.json()).then((data) => {
+        ui.getall_products(data);
+        cart.get_product_info(data);
+    });
+
     class ui {
         //get data from aip and creat ui links
         static createLinks(apilinks) {
@@ -16,6 +23,7 @@ $(function() {
                 data.forEach(data => {
                     ui.product_temp(data.title, data.price, data.id, data.image, data.category)
                 })
+                ui.events();
             }
             /**product template */
         static product_temp(title, price, id, imgurl, catogery) {
@@ -73,68 +81,64 @@ $(function() {
             }
             //filter by search
         static search_filter(search_text) {
-            let uiproduct = document.querySelectorAll('.products .product');
-            uiproduct.forEach(prod => {
-                prod.classList.remove('active');
-                prod.classList.remove('disactive');
-                let product_title = $(prod).children('.title').text().
-                toLowerCase();
-                if (product_title.match(search_text.toLowerCase())) {
-                    prod.classList.add('active');
-                } else {
-                    prod.classList.add('disactive');
-                }
+                let uiproduct = document.querySelectorAll('.products .product');
+                uiproduct.forEach(prod => {
+                    prod.classList.remove('active');
+                    prod.classList.remove('disactive');
+                    let product_title = $(prod).children('.title').text().
+                    toLowerCase();
+                    if (product_title.match(search_text.toLowerCase())) {
+                        prod.classList.add('active');
+                    } else {
+                        prod.classList.add('disactive');
+                    }
 
+                })
+            }
+            //add events
+        static events() {
+            // open new page and send product id to storeage
+            let products = document.querySelectorAll('.products .product');
+            products.forEach(product => {
+                    $(product).on('click', (e) => {
+                        let product_id = product.id;
+                        if (e.target.id == "add-cart") {
+                            local_storage.set_id(product_id);
+                            window.open('./product_info.html');
+
+                        }
+                    })
+
+                })
+                // add event on link click
+                //filter by categories
+            if (links_container) {
+                links_container.on('click', (e) => {
+                    if (e.target.id == "link") {
+                        if (e.target.classList.contains("all")) {
+                            ui.add_active("active-all");
+                        } else {
+                            let catogery_type = $(e.target).data('catogery');
+                            ui.add_active(catogery_type);
+                        }
+                    }
+                });
+            }
+            //filter by price
+            if (links_price) {
+                links_price.on('click', (e) => {
+                    if (e.target.id == "by-price") {
+                        ui.add_active($(e.target).data('price'));
+                    }
+                })
+            }
+            //filter by search
+            $('.search_form').on('input', (e) => {
+                let text = $(e.target).val();
+                ui.search_filter(text);
             })
         }
     }
-    //get data from aip
-    fetch(`https://fakestoreapi.com/products/categories `).then(data => data.json()).then(data => ui.createLinks(data));
-    fetch(`https://fakestoreapi.com/products`).then(data => data.json()).then((data) => {
-        ui.getall_products(data);
-        cart.get_product_info(data);
-    });
-    // add event on link click by categories
-    if (links_container) {
-        links_container.on('click', (e) => {
-            if (e.target.id == "link") {
-                if (e.target.classList.contains("all")) {
-                    ui.add_active("active-all");
-                } else {
-                    let catogery_type = $(e.target).data('catogery');
-                    ui.add_active(catogery_type);
-                }
-            }
-        });
-    }
-    if (links_price) {
-        links_price.on('click', (e) => {
-            if (e.target.id == "by-price") {
-                ui.add_active($(e.target).data('price'));
-            }
-        })
-    }
-
-    $('.search_form').on('input', (e) => {
-            let text = $(e.target).val();
-            ui.search_filter(text);
-        })
-        // open new page and send product id to storeage
-    setTimeout(() => {
-        let products = document.querySelectorAll('.products .product');
-        products.forEach(product => {
-            $(product).on('click', (e) => {
-                product_id = product.id;
-                if (e.target.id == "add-cart") {
-                    local_storage.set_id(product_id);
-                    window.open('./product_info.html');
-
-                }
-            })
-
-        })
-    }, 2000)
-
 
 
 })

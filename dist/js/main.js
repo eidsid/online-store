@@ -12,51 +12,6 @@ $(function() {
     })
 
 })
-class cart {
-    static productinfo_template(id, category, title, info, price, imgurl) {
-            let categoryui = $('.productinfo-container .categories ');
-            categoryui.text(category);
-            let productinfo_container = $('.productinfo-container .product');
-            productinfo_container.attr('id', id);
-            productinfo_container.children('.prod-header').children('.title').text(title);
-            productinfo_container.children('.prod-body ').children('.info').text(info);
-            productinfo_container.children('.prod-body').children('.img').attr('src', imgurl);
-            productinfo_container.children('.prod-footer').children('.price').text(price);
-            productinfo_container.children('.prod-footer').children('.count').text(1);
-            this.category = category;
-        }
-        // api product info data by id
-
-    static get_product_info(data) {
-            let id = local_storage.get_passed_id();
-            data.forEach(data => {
-                if (data.id == id) {
-                    cart.productinfo_template(data.id, data.category, data.title, data.description, data.price, data.image);
-                }
-            })
-
-            // recommended ui
-            data.forEach(data => {
-                if (data.category == this.category && data.id != id) {
-                    cart.recomend_products(data.id, data.title, data.price, data.image)
-                }
-            })
-
-        }
-        // recommended ui temlplate
-    static recomend_products(id, title, price, imgurl) {
-        let recommended_container = $('.recommend-products');
-        let content = `
-         <div class="product" id="${id}"><img src="${imgurl}" alt=""/>
-            <h4>${title}</h4>
-            <div class="form">
-              <div class="price">${price}</div>
-              <div class="btn btn-primary" id="add-cart">buy</div>
-            </div>
-          </div>`
-        recommended_container.append(content)
-    }
-}
 // // Store Class: Handles Storage
 // class local_storage {
 
@@ -122,6 +77,30 @@ class local_storage {
     static get_passed_id() {
         return localStorage.getItem('productid');
     }
+    static get_purchase() {
+        let purchase_items = JSON.parse(localStorage.getItem('purchase-items'));
+        if (purchase_items) {
+            return purchase_items;
+        } else {
+            return purchase_items = [];
+        }
+    }
+    static set_purchase(item) {
+        let purchase_items = local_storage.get_purchase();
+        purchase_items.push(item);
+        localStorage.setItem('purchase-item', JSON.stringify(purchase_items));
+
+    }
+    static cancel_purchase(id) {
+        let purchase_items = local_storage.get_purchase();
+        purchase_items.forEach((item, index) => {
+            if (item.id == id) {
+                purchase_items.splice(index, 1);
+
+            }
+
+        });
+    }
 
 
 
@@ -131,6 +110,13 @@ $(function() {
     let links_container = $('.side-bar .links');
     let links_price = $('.side-bar .price_links');
     let uiproducts_container = $('.products');
+    //get data from aip
+    fetch(`https://fakestoreapi.com/products/categories `).then(data => data.json()).then(data => ui.createLinks(data));
+    fetch(`https://fakestoreapi.com/products`).then(data => data.json()).then((data) => {
+        ui.getall_products(data);
+        cart.get_product_info(data);
+    });
+
     class ui {
         //get data from aip and creat ui links
         static createLinks(apilinks) {
@@ -145,6 +131,7 @@ $(function() {
                 data.forEach(data => {
                     ui.product_temp(data.title, data.price, data.id, data.image, data.category)
                 })
+                ui.events();
             }
             /**product template */
         static product_temp(title, price, id, imgurl, catogery) {
@@ -202,68 +189,135 @@ $(function() {
             }
             //filter by search
         static search_filter(search_text) {
-            let uiproduct = document.querySelectorAll('.products .product');
-            uiproduct.forEach(prod => {
-                prod.classList.remove('active');
-                prod.classList.remove('disactive');
-                let product_title = $(prod).children('.title').text().
-                toLowerCase();
-                if (product_title.match(search_text.toLowerCase())) {
-                    prod.classList.add('active');
-                } else {
-                    prod.classList.add('disactive');
-                }
+                let uiproduct = document.querySelectorAll('.products .product');
+                uiproduct.forEach(prod => {
+                    prod.classList.remove('active');
+                    prod.classList.remove('disactive');
+                    let product_title = $(prod).children('.title').text().
+                    toLowerCase();
+                    if (product_title.match(search_text.toLowerCase())) {
+                        prod.classList.add('active');
+                    } else {
+                        prod.classList.add('disactive');
+                    }
 
+                })
+            }
+            //add events
+        static events() {
+            // open new page and send product id to storeage
+            let products = document.querySelectorAll('.products .product');
+            products.forEach(product => {
+                    $(product).on('click', (e) => {
+                        let product_id = product.id;
+                        if (e.target.id == "add-cart") {
+                            local_storage.set_id(product_id);
+                            window.open('./product_info.html');
+
+                        }
+                    })
+
+                })
+                // add event on link click
+                //filter by categories
+            if (links_container) {
+                links_container.on('click', (e) => {
+                    if (e.target.id == "link") {
+                        if (e.target.classList.contains("all")) {
+                            ui.add_active("active-all");
+                        } else {
+                            let catogery_type = $(e.target).data('catogery');
+                            ui.add_active(catogery_type);
+                        }
+                    }
+                });
+            }
+            //filter by price
+            if (links_price) {
+                links_price.on('click', (e) => {
+                    if (e.target.id == "by-price") {
+                        ui.add_active($(e.target).data('price'));
+                    }
+                })
+            }
+            //filter by search
+            $('.search_form').on('input', (e) => {
+                let text = $(e.target).val();
+                ui.search_filter(text);
             })
         }
     }
-    //get data from aip
-    fetch(`https://fakestoreapi.com/products/categories `).then(data => data.json()).then(data => ui.createLinks(data));
-    fetch(`https://fakestoreapi.com/products`).then(data => data.json()).then((data) => {
-        ui.getall_products(data);
-        cart.get_product_info(data);
-    });
-    // add event on link click by categories
-    if (links_container) {
-        links_container.on('click', (e) => {
-            if (e.target.id == "link") {
-                if (e.target.classList.contains("all")) {
-                    ui.add_active("active-all");
-                } else {
-                    let catogery_type = $(e.target).data('catogery');
-                    ui.add_active(catogery_type);
-                }
-            }
-        });
-    }
-    if (links_price) {
-        links_price.on('click', (e) => {
-            if (e.target.id == "by-price") {
-                ui.add_active($(e.target).data('price'));
-            }
-        })
-    }
-
-    $('.search_form').on('input', (e) => {
-            let text = $(e.target).val();
-            ui.search_filter(text);
-        })
-        // open new page and send product id to storeage
-    setTimeout(() => {
-        let products = document.querySelectorAll('.products .product');
-        products.forEach(product => {
-            $(product).on('click', (e) => {
-                product_id = product.id;
-                if (e.target.id == "add-cart") {
-                    local_storage.set_id(product_id);
-                    window.open('./product_info.html');
-
-                }
-            })
-
-        })
-    }, 2000)
-
 
 
 })
+class cart {
+    static productinfo_template(id, category, title, info, price, imgurl) {
+            let categoryui = $('.productinfo-container .categories ');
+            categoryui.text(category);
+            let productinfo_container = $('.productinfo-container .product');
+            productinfo_container.attr('id', id);
+            productinfo_container.children('.prod-header').children('.title').text(title);
+            productinfo_container.children('.prod-body ').children('.info').text(info);
+            productinfo_container.children('.prod-body').children('.img').attr('src', imgurl);
+            productinfo_container.children('.prod-footer').children('.price').text(price);
+            productinfo_container.children('.prod-footer').children('.count').val(1);
+            this.category = category;
+        }
+        // api product info data by id
+    static get_product_info(data) {
+        let id = local_storage.get_passed_id();
+        data.forEach(data => {
+            if (data.id == id) {
+                cart.productinfo_template(data.id, data.category, data.title, data.description, data.price, data.image);
+                this.data = data;
+            }
+        })
+
+        // recommended ui
+        data.forEach(data => {
+            if (data.category == this.category && data.id != id) {
+                cart.recomend_products(data.id, data.title, data.price, data.image)
+            }
+            cart.events();
+        })
+
+
+    }
+    static events() {
+            // open new page and send product id to storeage
+            let products = document.querySelectorAll('.recommend-products .product');
+            products.forEach(product => {
+                    $(product).on('click', (e) => {
+                        if (e.target.id == "add-cart-reco") {
+                            local_storage.set_id(product.id);
+                            window.open('./product_info.html');
+                        }
+                    })
+                })
+                //purchase now event 
+            let product_purchase = $('.productinfo-container .product .purchase'); {
+                product_purchase.on('click', () => {
+                    let count = $('.productinfo-container .product .prod-footer .count');
+                    console.log(count);
+                    console.log('shoud count log');
+                    let data = this.data;
+                    let item = { count: count, title: data.title, price: data.price, img: data.image };
+                    local_storage.set_purchase(item);
+                })
+            }
+
+        }
+        // recommended ui temlplate
+    static recomend_products(id, title, price, imgurl) {
+        let recommended_container = $('.recommend-products');
+        let content = `
+         <div class="product" id="${id}"><img src="${imgurl}" alt=""/>
+            <h4>${title}</h4>
+            <div class="form">
+              <div class="price">${price}</div>
+              <div class="btn btn-primary" id="add-cart-reco">buy</div>
+            </div>
+          </div>`
+        recommended_container.append(content)
+    }
+}
