@@ -6,8 +6,9 @@ html(lang="en")
               meta(name="viewport", content="width=device-width, initial-scale=1.0")
               title #{page_title}
               include ./components/links
-
        body
+           .header           
+              include ./components/navbar
            .productinfo-content  
                include ./pages_content/product
        include ./components/scripts

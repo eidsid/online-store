@@ -9,7 +9,7 @@
     top: 0;
     z-index: 3;
     .nav_brand {
-        // margin-left: 15px;
+        margin-left: 15px;
     }
     .nav_bar {
         width: 100%;
@@ -34,11 +34,24 @@
                 .not-body {
                     ul {
                         padding: 5%;
-                        li {
+                    
+                        .not-container{
+                            @include flex(row);
+                            justify-content: space-between;
+                          li {
                             margin-top: 30px;
                             i {
                                 margin-right: 5%;
                             }
+                        } 
+                        .close{
+                            color: red;
+                                @include Stransation(0.4s);
+                                &:hover{
+                                    transform: scale(1.2);
+                                    cursor: pointer;
+                                }
+                       }
                         }
                     }
                 }
@@ -87,13 +100,24 @@
                     }
                     ul {
                         li {
+                            
                             color: floralwhite;
                             text-align: center;
                             @include button;
                             @include Stransation(0.4s);
                             &:hover {
                                 background-color: gray;
-                            }
+                                cursor: pointer;
+                            } 
+                              &.disabled{
+                               opacity: 0.2 !important;
+
+                           &:hover {
+                               cursor: unset;
+                              background-color: unset;
+                        
+                            } 
+                               }
                         }
                     }
                 }
@@ -148,7 +172,15 @@
             }
         }
         .cart {
-            @include flex(row)
+            margin-top: -15px;
+            a{
+            @include flex(columns);
+        p{
+            margin-top: -15px !important;
+            margin-right: -15px !important;
+        }
+            
+        }
         }
         .dropdown-menu {
             &:before {
@@ -180,6 +212,7 @@
             display: none;
         }
     }
+ 
 }
 
 @include mobile {
@@ -253,6 +286,14 @@
             &.show {
                 transform: translateY(0);
             }
+            
+
+        .cart {
+            margin-top: 50px;
+                 }
+
+
+
         }
     }
 }

@@ -1,0 +1,128 @@
+.loginform { 
+              opacity: 0.8;
+       .title{
+              text-align: center;
+              padding-top: 2% ;
+       }
+color: white;
+width: 100vw;
+height: 100%;
+margin-top: -21px;
+background: linear-gradient( to right, rgba(rgb(12, 29, 72), 1), rgba(rgb(29, 28, 28), 0.4)), url('../assts/snow.jpg') center top;
+.login_form{  
+        max-width: 630px;
+       min-width:250px;
+       padding: 2% 5% 5% 5%;
+       text-align: center;
+       margin: $center;
+       .flex{
+              .remember{
+              @include flex(row-reverse);
+              input{
+                     transform: scale(1.5);
+                     margin:20px 20px 20px 2px;
+              }
+              }
+              @include flex(row);
+              justify-content: space-between;
+              a{
+                     color: whitesmoke;
+              }
+       }
+       input{
+              margin-top: 5%;
+       }
+       button{      
+              @include Stransation(1s);
+              margin-top: 40px;
+              width: 200px;
+              opacity: 0.6;
+              &.active{
+                     opacity: 1;
+              }
+       }
+       .social{
+              
+              font-size: 2rem;
+              h2{
+               color: rgb(179, 179, 179);
+                     font-family: sans-serif; 
+                     font-weight: bold;
+                     font-size: 2.2rem;
+              margin: 10% 0;
+              }
+              .social-icon{
+              margin-top: 40px;
+                     margin: $center;
+                     width: 25%;
+                     @include flex(row);
+                     justify-content: space-between;
+              i{@include Stransation(0.3s);
+                     &:hover{
+                            opacity: 0.6;
+                            cursor: pointer;
+                     }
+              }
+              }
+       }
+       ul.noty-form{
+              list-style: none;
+              border: 5px inset rgb(64, 70, 79);
+              margin: 10px 0px;
+              padding: 15px 0;
+              background-color: rgb(36, 35, 35);
+              color: azure;
+              font-family: monospace;
+   li{
+          @include Stransation(0.7s);
+          margin-top: 3%;
+          position: relative;
+          &::before{
+                 content: "->";
+                 left: 10%;
+                 position: absolute;
+          } 
+           &::after{
+                 content: "<-";
+                 right: 10%;
+                 position: absolute;
+          }
+       &.active{
+              font-size:0.7rem;
+       color: rgb(8, 237, 8);
+       &::before{
+              left: 20%;
+       }
+       &::after{
+              right: 20%;
+       }
+             }
+              }
+       }
+}
+
+}
+@include mobile{
+    .login_form{
+           ul.noty-form{
+                  li{
+                     @include Stransation(2s); 
+                     font-size: 0.7rem;
+                         &::before {
+                          left: 2% !important;
+                         }
+                         &::after{
+                                right: 2% !important;
+                         }
+                         &.active{
+                                    &::before {
+                          left: 7% !important ;
+                         }
+                         &::after{
+                                right: 7% !important;
+                         }
+                         }
+                  }
+           }
+    }
+}

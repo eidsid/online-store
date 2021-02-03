@@ -26,12 +26,14 @@
             opacity: 0.8;
         }
     }
-    button {
+    a.btn {
         margin-left: 37%;
         margin-top: 35%;
-        @include Stransation(0.4s);
+        @include Stransation(0.4s);                    color: rgb(194, 194, 194) !important;
+
         &:hover {
             transform: scale(1.1);
         }
+     
     }
 }

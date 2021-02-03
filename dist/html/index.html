@@ -14,7 +14,7 @@
     <div class="header">          
       <div class="header-nav">
         <div class="nav_brand">
-          <h1>PoStore</h1>
+          <h1><a href="index.html">PoStore</a></h1>
         </div>
         <div class="form-group search_form">
           <input class="form-control search_area" type="text" placeholder="search"/>
@@ -24,15 +24,9 @@
       <ul class="nav_bar">
         <li class="dropdown show notification"><a class="dropdown-toggle" id="dropdownMenuLink" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notification</a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <div class="not-head">Notifications<span>50</span></div>
+            <div class="not-head">Notifications<span>0</span></div>
             <div class="not-body">
-              <ul class="list-unstyled">
-                <li> <i class="fa fa-envelope-o fa-lg"></i>you have an message ...</li>
-                <li> <i class="fa fa-money fa-lg"> </i>You have get money back ... </li>
-              </ul>
-            </div>
-            <div class="not-footer">
-              <div class="text-center"><a href="#">view all notification</a></div>
+              <ul class="list-unstyled"></ul>
             </div>
           </div>
         </li>
@@ -44,8 +38,8 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <ul class="lane list-unstyled">
                 <li>EN</li>
-                <li>AR</li>
-                <li>FR</li>
+                <li class="disabled">AR</li>
+                <li class="disabled">FR</li>
               </ul>
             </div>
           </li>
@@ -59,9 +53,8 @@
             </div>
           </div>
         </li>
-        <li class="cart">
-          <div class="item-count">0<i class="fa fa-shopping-cart"></i></div>
-        </li>
+        <li class="cart"><a href="cart.html">
+            <p class="item-count">0</p><i class="fa fa-shopping-cart"></i></a></li>
       </ul>
     </div>
     <div class="page-content"> 
@@ -75,8 +68,7 @@
           <li><a href="#" id="by-price" data-price="100">1 : 100</a></li>
           <li><a href="#" id="by-price" data-price="500">100 : 500</a></li>
           <li><a href="#" id="by-price" data-price="1000">500 : 1000</a></li>
-        </ul>
-        <button class="btn btn-primary">cart</button>
+        </ul><a class="btn btn-primary" href="cart.html">cart</a>
       </div>
       <div class="content"><i class="fa fa-exchange fa-lg toggle-sidbar"></i>
         <div class="container">

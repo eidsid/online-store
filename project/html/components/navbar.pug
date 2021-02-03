@@ -1,6 +1,6 @@
 .header-nav
   .nav_brand
-      h1 PoStore
+      h1: a(href="index.html") PoStore
   -if (page_title=="HomePage")
          .form-group.search_form
             input(type="text" class="form-control search_area" placeholder="search")
@@ -14,18 +14,9 @@ ul.nav_bar
       .dropdown-menu(aria-labelledby='dropdownMenuLink')
          .not-head
             | Notifications
-            span 50
+            span 0
          .not-body
             ul.list-unstyled
-               li 
-                  i.fa.fa-envelope-o.fa-lg
-                  | you have an message ...
-               li 
-                  i.fa.fa-money.fa-lg 
-                  |You have get money back ... 
-         .not-footer
-            .text-center
-               a(href="#") view all notification
    .center
     -if (page_title=="HomePage")
       .form-group.search_form
@@ -36,8 +27,8 @@ ul.nav_bar
             .dropdown-menu(aria-labelledby='dropdownMenuLink')
                ul.lane.list-unstyled
                   li EN
-                  li AR
-                  li FR
+                  li.disabled AR
+                  li.disabled FR
    li.dropdown.show.user
       a#dropdownMenuLink.dropdown-toggle.login(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
          | Hello, Login
@@ -52,5 +43,7 @@ ul.nav_bar
                .link-box
                   i.fa.fa-power-off.fa-lg
                   span logOut
-   li.cart: .item-count 0
-      i.fa.fa-shopping-cart
+   li.cart
+      a(href="cart.html")
+        p.item-count 0
+        i.fa.fa-shopping-cart

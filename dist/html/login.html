@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="../style/main.css"/>
+  </head>
+  <body>
+    <div class="loginform"> 
+      <h1 class="title">login to continue</h1>
+      <form class="form-group login_form">
+        <input class="form-control name" placeholder="enter user name"/>
+        <input class="form-control pass" placeholder="enter user pass"/>
+        <input class="form-control re-pass" placeholder="re-enter pass"/>
+        <ul class="noty-form">
+          <li class="name_valid">Name must be more than 2 char</li>
+          <hr/>
+          <div class="passListValid"> 
+            <ul class="list-unstyled">
+              <li class="more">password must be more 8 char</li>
+              <li class="upper">password must contain upper case char</li>
+              <li class="lower">password must contain lower case char</li>
+              <li class="number">password must contain at lest one number</li>
+              <li class="special">password must contain special char(@,#,..)</li>
+            </ul>
+          </div>
+          <hr/>
+          <li class="re_pass_valid">Passwords must be mutch</li>
+        </ul>
+        <div class="flex">
+          <div class="remember">
+            <label for="remember">Remember Me </label>
+            <input type="checkbox" name="remember" id="remember"/>
+          </div><a class="forget_pass" href="#">Forget password?</a>
+        </div>
+        <button class="btn btn-primary " type="submit">LOGIN</button>
+        <div class="social">
+          <h2>or sign up with</h2>
+          <div class="social-icon"><i class="fa fa-facebook"></i><i class="fa fa-instagram"></i></div>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/12197c9997.js" crossorigin="anonymous"></script>
+  <script src="../js/main.js"></script>
+</html>
