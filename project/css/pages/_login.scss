@@ -4,104 +4,141 @@
               text-align: center;
               padding-top: 2% ;
        }
-color: white;
-width: 100vw;
-height: 100%;
-margin-top: -21px;
-background: linear-gradient( to right, rgba(rgb(12, 29, 72), 1), rgba(rgb(29, 28, 28), 0.4)), url('../assts/snow.jpg') center top;
-.login_form{  
-        max-width: 630px;
-       min-width:250px;
-       padding: 2% 5% 5% 5%;
-       text-align: center;
-       margin: $center;
-       .flex{
-              .remember{
-              @include flex(row-reverse);
-              input{
-                     transform: scale(1.5);
-                     margin:20px 20px 20px 2px;
-              }
-              }
-              @include flex(row);
-              justify-content: space-between;
-              a{
-                     color: whitesmoke;
-              }
-       }
-       input{
-              margin-top: 5%;
-       }
-       button{      
-              @include Stransation(1s);
-              margin-top: 40px;
-              width: 200px;
-              opacity: 0.6;
-              &.active{
-                     opacity: 1;
-              }
-       }
-       .social{
-              
-              font-size: 2rem;
-              h2{
-               color: rgb(179, 179, 179);
-                     font-family: sans-serif; 
-                     font-weight: bold;
-                     font-size: 2.2rem;
-              margin: 10% 0;
-              }
-              .social-icon{
-              margin-top: 40px;
-                     margin: $center;
-                     width: 25%;
+       color: white;
+       width: 100vw;
+       height: 100%;
+       margin-top: -21px;
+       background: linear-gradient( to right, rgba(rgb(12, 29, 72), 1), rgba(rgb(29, 28, 28), 0.4)), url('../assts/snow.jpg') center top;
+       .login_form{  
+              max-width: 630px;
+              min-width:250px;
+              padding: 2% 5% 5% 5%;
+              text-align: center;
+              margin: $center;
+              .flex{
+                     .remember{
+                     @include flex(row-reverse);
+                     input{
+                            transform: scale(1.5);
+                            margin:20px 20px 20px 2px;
+                     }
+                     }
                      @include flex(row);
                      justify-content: space-between;
-              i{@include Stransation(0.3s);
-                     &:hover{
-                            opacity: 0.6;
-                            cursor: pointer;
+                     a{
+                            color: whitesmoke;
                      }
               }
+              input{
+              margin-top: 5%;
+              }
+              p{
+                     background-color: rgb(56, 63, 70);
+                     padding: 3px;
+                     float: left;
+                     border-radius: 5px;
+                     max-width: 50%;
+                     display: none;
+                     &.active{
+                            display: inline;
+                     animation: ease-in-out 3s out;
+                     }
+                     @keyframes out {
+                            20%{opacity: 0.2 ;transform: scale(0.2)}
+                            40%{opacity: 0.4 ;transform: scale(0.4)}
+                            60%{opacity: 0.6 ;transform: scale(0.6)}
+                            80%{opacity: 0.8 ;transform: scale(0.8)}
+                            100%{opacity: 1 ;transform: scale(0.10)}
+                     }
+              }
+              button{      
+                     @include Stransation(1s);
+                     margin-top: 40px;
+                     width: 200px;
+                     opacity: 0.6;
+                     &.active{
+                            opacity: 1;
+                     }
+              }
+              .social{
+                     
+                     font-size: 2rem;
+                     h2{
+                     color: rgb(179, 179, 179);
+                            font-family: sans-serif; 
+                            font-weight: bold;
+                            font-size: 2.2rem;
+                     margin: 10% 0;
+                     }
+                     .social-icon{
+                     margin-top: 40px;
+                            margin: $center;
+                            width: 25%;
+                            @include flex(row);
+                            justify-content: space-between;
+                                   opacity: 0.6;
+                                   cursor:not-allowed;
+                          
+                     
+                     }
+              }
+              ul.noty-form{
+                     list-style: none;
+                     border: 5px inset rgb(64, 70, 79);
+                     margin: 10px 0px;
+                     padding: 15px 0;
+                     background-color: rgb(36, 35, 35);
+                     color: azure;
+                     font-family: monospace;
+       li{
+              @include Stransation(0.7s);
+              margin-top: 3%;
+              position: relative;
+              &::before{
+                     content: "->";
+                     left: 10%;
+                     position: absolute;
+              } 
+              &::after{
+                     content: "<-";
+                     right: 10%;
+                     position: absolute;
+              }
+              &.active{
+                     font-size:0.7rem;
+              color: rgb(8, 237, 8);
+              &::before{
+                     left: 20%;
+              }
+              &::after{
+                     right: 20%;
+              }
+              }
+                     }
               }
        }
-       ul.noty-form{
-              list-style: none;
-              border: 5px inset rgb(64, 70, 79);
-              margin: 10px 0px;
-              padding: 15px 0;
-              background-color: rgb(36, 35, 35);
-              color: azure;
-              font-family: monospace;
-   li{
-          @include Stransation(0.7s);
-          margin-top: 3%;
-          position: relative;
-          &::before{
-                 content: "->";
-                 left: 10%;
-                 position: absolute;
-          } 
-           &::after{
-                 content: "<-";
-                 right: 10%;
-                 position: absolute;
-          }
-       &.active{
-              font-size:0.7rem;
-       color: rgb(8, 237, 8);
-       &::before{
-              left: 20%;
-       }
-       &::after{
-              right: 20%;
-       }
-             }
+       .login-cover{
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100vw;
+              height: 100vh;
+              background-color: black;
+              color: whitesmoke;
+              z-index: 1;
+              
+              font-weight: bolder;
+              font-size: 5vmin;
+              font-family: sans-serif;
+              display: none !important;
+              &.active{
+              display: block !important;
+              @include flex(column);
+              
               }
        }
 }
 
-}
 @include mobile{
     .login_form{
            ul.noty-form{

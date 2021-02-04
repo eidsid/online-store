@@ -1,11 +1,15 @@
 .loginform 
-       h1.title login to continue
+       h1.title sign up to continue
        form(class="form-group login_form")
-            input(placeholder="enter user name"  class="form-control name")
-            input(placeholder="enter user pass"  class="form-control pass")
-            input(placeholder="re-enter pass"  class="form-control re-pass")
+            input(placeholder="enter your name"  class="form-control name" type="text")
+            input(placeholder="enter your email"  class="form-control email" type="email" requrie)
+            input(placeholder="enter pass"  class="form-control pass" type="password")
+            p.show_pass_notif show password by click double click in input
+            input(placeholder="re-enter pass"  class="form-control re-pass" type="password")
             ul.noty-form
                li.name_valid Name must be more than 2 char
+               hr       
+               li.email_valid Name must enter vaild Email
                hr
                .passListValid 
                   ul.list-unstyled
@@ -27,3 +31,6 @@
               .social-icon
                   i.fa.fa-facebook
                   i.fa.fa-instagram
+       .login-cover
+         h1 you aleredy login
+         h2 you will be redirected

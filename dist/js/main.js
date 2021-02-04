@@ -85,7 +85,7 @@ class local_storage {
 
     }
     static get_login() {
-        let loginInfo = localStorage.getItem('login');
+        let loginInfo = JSON.parse(localStorage.getItem('login'));
         if (loginInfo) {
             return loginInfo
         } else {
@@ -93,7 +93,7 @@ class local_storage {
         }
     }
     static set_login(info) {
-        localStorage.setItem('login', info);
+        localStorage.setItem('login', JSON.stringify(info));
     }
 
 
@@ -220,12 +220,14 @@ let form_validator = $('.login_form ul.noty-form');
 //for validator 
 //validator ui
 let name = loginform.children('.name');
-let username = "";
-let userpass = "";
+let email = loginform.children('.email');
 let pass = loginform.children('.pass');
 let re_pass = loginform.children('.re-pass');
-
+let username = "";
+let userpass = "";
+let useremail = "";
 let vald_name = false,
+       vald_email = false,
        vald_pass = false,
        vald_match = false;
 //add event on button for valdate form
@@ -243,10 +245,25 @@ class valdform {
               }
               this.activeLoginButton();
        }
+       //valid email
+       static validateEmail() {
+              const emailTest = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+              if (emailTest.test(email.val().toLowerCase())) {
+                     vald_email = true;
+                     vald_email = email.val();
+                     form_validator.children('.email_valid').addClass('active');
+              } else {
+                     vald_email = false;
+                     form_validator.children('.email_valid').removeClass('active');
+
+              };
+              this.activeLoginButton();
+       }
        //valid pass
        static passVald() {
               let passlist = form_validator.children('.passListValid').children('ul');
-              let mediumRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+              const mediumRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
               //test if pass more than 8 character
               if (pass.val().search(/(?=.{8,})/) !== -1) {
                      passlist.children('.more').addClass('active');
@@ -293,7 +310,7 @@ class valdform {
        static rePassVald() {
               if (re_pass.val() == pass.val() && vald_pass) {
                      vald_match = true;
-                     userpass = re_pass.val();
+                     userpass = pass.val();
                      form_validator.children('.re_pass_valid').addClass('active');
               } else {
                      vald_match = false;
@@ -303,7 +320,7 @@ class valdform {
        }
        //vald all form and make form valid true
        static activeLoginButton() {
-              if (vald_name && vald_pass && vald_match) {
+              if (vald_name && vald_email && vald_pass && vald_match) {
                      this.vald_form = true;
                      $('.login_form button').addClass('active');
               } else {
@@ -313,14 +330,18 @@ class valdform {
        }
        static submit(e) {
               if (this.vald_form) {
-                     local_storage.set_login(username, userpass);
+                     local_storage.set_login({ name: username, pass: userpass, email: useremail, login: true });
               } else {
                      e.preventDefault();
               }
        }
 }
-name.on('input', () => {
+let passs = [pass, re_pass];
+name.on('input', (e) => {
        valdform.nameVald();
+})
+email.on('input', () => {
+       valdform.validateEmail();
 })
 pass.on('input', () => {
        valdform.passVald();
@@ -330,6 +351,53 @@ re_pass.on('input', () => {
 })
 loginform.on('submit', (e) => {
        valdform.submit(e);
+
+})
+
+//show show_pass_notif
+pass.on('focus', () => {
+       pass.next().addClass('active');
+})
+//show password when double click
+passs.forEach(pass => {
+       pass.on('dblclick', (e) => {
+              if (e.target.type == "password") {
+                     e.target.type = "text";
+                     pass.next().removeClass('active');
+              } else {
+                     e.target.type = "password";
+              }
+
+       })
+})
+
+
+//chick if user exist and redirect
+let logininfo = local_storage.get_login();
+let login = logininfo.login;
+if (login && window.location.pathname == "/dist/html/login.html") {
+       $('.loginform .login-cover').addClass('active');
+       setTimeout(() => {
+              window.location.replace("index.html");
+       }, 3000);
+}
+//update header user name and event user opetions
+let usernameUI = $('.nav_bar .user a');
+if (login) {
+
+       usernameUI.text("Hello " + logininfo.name);
+
+} else {
+       usernameUI.text("Hello login");
+}
+
+usernameUI.on('click', (e) => {
+       console.log('xlixk');
+       if (login) {
+              e.preventDefault();
+       } else {
+              window.location.replace("/dist/html/login.html");
+       }
 
 })
 // ui notifications
@@ -386,12 +454,12 @@ notifications.not_count();
 let links_container = $('.side-bar .links');
 let links_price = $('.side-bar .price_links');
 let uiproducts_container = $('.products');
-//get data from aip
-// fetch(`https://fakestoreapi.com/products/categories `).then(data => data.json()).then(data => ui.createLinks(data));
-// fetch(`https://fakestoreapi.com/products`).then(data => data.json()).then((data) => {
-//     ui.getall_products(data);
-//     cart.get_product_info(data);
-// });
+// get data from aip
+fetch(`https://fakestoreapi.com/products/categories `).then(data => data.json()).then(data => ui.createLinks(data));
+fetch(`https://fakestoreapi.com/products`).then(data => data.json()).then((data) => {
+    ui.getall_products(data);
+    cart.get_product_info(data);
+});
 
 class ui {
 

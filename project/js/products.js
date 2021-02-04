@@ -2,12 +2,12 @@
 let links_container = $('.side-bar .links');
 let links_price = $('.side-bar .price_links');
 let uiproducts_container = $('.products');
-//get data from aip
-// fetch(`https://fakestoreapi.com/products/categories `).then(data => data.json()).then(data => ui.createLinks(data));
-// fetch(`https://fakestoreapi.com/products`).then(data => data.json()).then((data) => {
-//     ui.getall_products(data);
-//     cart.get_product_info(data);
-// });
+// get data from aip
+fetch(`https://fakestoreapi.com/products/categories `).then(data => data.json()).then(data => ui.createLinks(data));
+fetch(`https://fakestoreapi.com/products`).then(data => data.json()).then((data) => {
+    ui.getall_products(data);
+    cart.get_product_info(data);
+});
 
 class ui {
 

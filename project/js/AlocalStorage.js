@@ -84,7 +84,7 @@ class local_storage {
 
     }
     static get_login() {
-        let loginInfo = localStorage.getItem('login');
+        let loginInfo = JSON.parse(localStorage.getItem('login'));
         if (loginInfo) {
             return loginInfo
         } else {
@@ -92,7 +92,7 @@ class local_storage {
         }
     }
     static set_login(info) {
-        localStorage.setItem('login', info);
+        localStorage.setItem('login', JSON.stringify(info));
     }
 
 
