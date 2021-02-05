@@ -60,3 +60,10 @@
         font-size: 2rem;
     }
 }
+@include mobile{
+    .cart{
+        .cart-head,.cart-footer{
+        font-size: 1.5rem !important;
+        }
+    }
+}

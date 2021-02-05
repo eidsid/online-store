@@ -13,7 +13,7 @@
   <body>
     <div class="loginform"> 
       <h1 class="title">sign up to continue</h1>
-      <form class="form-group login_form">
+      <form class="form-group signup_form">
         <input class="form-control name" placeholder="enter your name" type="text"/>
         <input class="form-control email" placeholder="enter your email" type="email" requrie="requrie"/>
         <input class="form-control pass" placeholder="enter pass" type="password"/>
@@ -40,12 +40,22 @@
           <div class="remember">
             <label for="remember">Remember Me </label>
             <input type="checkbox" name="remember" id="remember"/>
-          </div><a class="forget_pass" href="#">Forget password?</a>
+          </div>
+          <div class="other"><a>Forget password?</a><a class="forget_pass hav_account_btn" href="#">Already have an account</a></div>
         </div>
         <button class="btn btn-primary " type="submit">LOGIN</button>
         <div class="social">
           <h2>or sign up with</h2>
           <div class="social-icon"><i class="fa fa-facebook"></i><i class="fa fa-instagram"></i></div>
+        </div>
+      </form>
+      <form class="login_form">
+        <div class="dropdown"> 
+          <h1>Log in</h1>
+          <input class="form-control email" placeholder="enter your email" type="email" requrie="requrie"/>
+          <input class="form-control password" placeholder="enter your password" type="password" requrie="requrie"/>
+          <button class="btn btn-primary">Log in</button>
+          <p class="alert"></p><a class="dontHaveAcount" href="#">dont have account</a>
         </div>
       </form>
       <div class="login-cover">

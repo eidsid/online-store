@@ -94,6 +94,11 @@ class local_storage {
     static set_login(info) {
         localStorage.setItem('login', JSON.stringify(info));
     }
+    static login_stat() {
+        let login_state = this.get_login();
+        login_state.login = !login_state.login;
+        this.set_login(login_state);
+    }
 
 
 }

@@ -1,6 +1,6 @@
 .loginform 
        h1.title sign up to continue
-       form(class="form-group login_form")
+       form(class="form-group signup_form")
             input(placeholder="enter your name"  class="form-control name" type="text")
             input(placeholder="enter your email"  class="form-control email" type="email" requrie)
             input(placeholder="enter pass"  class="form-control pass" type="password")
@@ -24,13 +24,23 @@
                   .remember
                      label(for="remember") Remember Me 
                      input(type="checkbox", name="remember" id="remember")
-                  a.forget_pass(href="#") Forget password?
+                  .other
+                        a Forget password?
+                        a.forget_pass(href="#" class="hav_account_btn") Already have an account
             button(type="submit" class="btn btn-primary ") LOGIN
             .social
               h2 or sign up with
               .social-icon
                   i.fa.fa-facebook
                   i.fa.fa-instagram
+       form(class="login_form")
+            .dropdown 
+               h1 Log in
+               input(placeholder="enter your email"  class="form-control email" type="email" requrie)
+               input(placeholder="enter your password"  class="form-control password" type="password" requrie)
+               button.btn.btn-primary Log in
+               p.alert
+               a(href="#" class="dontHaveAcount") dont have account
        .login-cover
          h1 you aleredy login
          h2 you will be redirected

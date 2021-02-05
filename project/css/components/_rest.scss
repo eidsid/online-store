@@ -71,7 +71,7 @@
         text-decoration: none;
     }
     
-    @include mobile {
+    @include medi {
         .toggle-sidbar {
             display: inline !important;
         }
@@ -87,4 +87,12 @@
                 width: 100%;
             }
         }
+    }
+    @include mobile{
+                .toggle-sidbar {
+            margin-left: -8% !important;
+        }
+    }
+    .not-work{
+        opacity: 0.6;
     }

@@ -59,30 +59,32 @@ class cart {
                 return true;
             }
         });
-
         //add purchased
         product_purchase.on('click', () => {
-            let exist = false;
-            let purchase_itemsr = local_storage.get_purchase();
-            purchase_itemsr.forEach(item => {
-                if (item.id == data.id) {
-                    exist = true;
-                    prochase_btn.text('purchased').css('backgroundColor', 'green');
+            if (local_storage.get_login().login) {
+                let exist = false;
+                let purchase_itemsr = local_storage.get_purchase();
+                purchase_itemsr.forEach(item => {
+                    if (item.id == data.id) {
+                        exist = true;
+                        prochase_btn.text('purchased').css('backgroundColor', 'green');
+                        return true;
+                    }
+                });
+                if (exist) {
                     return true;
+                } else {
+                    prochase_btn.text('purchased').css('backgroundColor', 'green');
+                    let count = $('.productinfo-container .product .prod-footer .count').val();
+                    let item = { count: count, title: data.title, price: data.price, img: data.image, id: data.id };
+                    local_storage.set_purchase(item);
+                    let text = data.title.substring(0, 10);
+                    local_storage.set_notifications({ text: ` You bought ${text}`, id: Math.floor(Math.random(10) * 100) });
+                    window.location.reload(true);
                 }
-            });
-            if (exist) {
-                return true;
             } else {
-                prochase_btn.text('purchased').css('backgroundColor', 'green');
-                let count = $('.productinfo-container .product .prod-footer .count').val();
-                let item = { count: count, title: data.title, price: data.price, img: data.image, id: data.id };
-                local_storage.set_purchase(item);
-                let text = data.title.substring(0, 10);
-                local_storage.set_notifications({ text: ` You bought ${text}`, id: Math.floor(Math.random(10) * 100) });
-                window.location.reload(true);
+                window.location.replace("/dist/html/login.html");
             }
-
         })
     }
     // recommended ui temlplate

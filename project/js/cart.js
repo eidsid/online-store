@@ -11,7 +11,6 @@ class UI_items {
     //  h1.no_items
     static noitms() {
         let totalPurchase = local_storage.get_totalPurchased();
-
         if (totalPurchase > 0) {
             cart_items.children('h1.no_items').removeClass('active');
 
