@@ -185,7 +185,7 @@ usernameUI.on('click', (e) => {
        if (login) {
               e.preventDefault();
        } else {
-              window.location.replace("/dist/html/login.html");
+              window.location.replace("online-store/dist/html/login.html");
        }
 })
 
